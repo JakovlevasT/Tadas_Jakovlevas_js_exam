@@ -24,6 +24,7 @@ const els = {
 
 els.formEl.addEventListener('submit', (e) => {
   e.preventDefault();
+  els.rezEl.innerHTML = '';
   const inputVal = els.inputEl.value;
   console.log('inputVal ===', inputVal);
   const pounds = convertToPounds(inputVal);
@@ -32,6 +33,7 @@ els.formEl.addEventListener('submit', (e) => {
   console.log('grams ===', grams);
   const ounce = convertToOunces(inputVal);
   console.log('ounce ===', ounce);
+  pushResultsToWeb(inputVal, pounds, grams, ounce);
 });
 
 function convertToPounds(numb) {
@@ -48,8 +50,18 @@ function convertToOunces(numb) {
   return sum;
 }
 
-function pushResultsToWeb(lb, g, oz) {
+function pushResultsToWeb(val, lb, g, oz) {
   const ulEl = document.createElement('ul');
-  const liEl = document.createElement('li');
-  liEl.textContent = ulEl.append(liEl);
+  ulEl.className = 'ulEl';
+  const firstLiEl = document.createElement('li');
+  firstLiEl.className = 'atsakymas';
+  firstLiEl.textContent = `${val} kg konvertavus i svarus, gauname ${lb} lb.`;
+  const secondLiEl = document.createElement('li');
+  secondLiEl.className = 'atsakymas';
+  secondLiEl.textContent = `${val} kg konvertavus i gramus, gauname ${g} g.`;
+  const thirdLiEl = document.createElement('li');
+  thirdLiEl.className = 'atsakymas';
+  thirdLiEl.textContent = `${val} kg konvertavus i uncijas, gauname ${oz} oz.`;
+  els.rezEl.append(ulEl);
+  ulEl.append(firstLiEl, secondLiEl, thirdLiEl);
 }
