@@ -22,10 +22,17 @@ const els = {
 // console.log(els.inputEl);
 // console.log(els.rezEl);
 
+const regex = /[a-zA-Z]/;
+
 els.formEl.addEventListener('submit', (e) => {
   e.preventDefault();
   els.rezEl.innerHTML = '';
   let inputVal = els.inputEl.value;
+  if (regex.test(inputVal) || inputVal === '') {
+    errorMsg();
+    els.inputEl.value = '';
+    return;
+  }
   console.log('inputVal ===', inputVal);
   const pounds = convertToPounds(inputVal);
   console.log('pounds ===', pounds);
@@ -39,30 +46,43 @@ els.formEl.addEventListener('submit', (e) => {
 
 function convertToPounds(numb) {
   const sum = numb * 2.2046;
-  return sum;
+  return sum.toFixed(2);
 }
 function convertToGrams(numb) {
   const sum = numb / 0.001;
-  return sum;
+  return sum.toFixed(2);
 }
 
 function convertToOunces(numb) {
   const sum = numb * 35.274;
-  return sum;
+  return sum.toFixed(2);
 }
 
 function pushResultsToWeb(val, lb, g, oz) {
   const ulEl = document.createElement('ul');
   ulEl.className = 'ulEl';
-  const firstLiEl = document.createElement('li');
-  firstLiEl.className = 'atsakymas';
-  firstLiEl.textContent = `${val} kg konvertavus i svarus, gauname ${lb} lb.`;
-  const secondLiEl = document.createElement('li');
-  secondLiEl.className = 'atsakymas';
-  secondLiEl.textContent = `${val} kg konvertavus i gramus, gauname ${g} g.`;
-  const thirdLiEl = document.createElement('li');
-  thirdLiEl.className = 'atsakymas';
-  thirdLiEl.textContent = `${val} kg konvertavus i uncijas, gauname ${oz} oz.`;
+
+  const firstLiEl = createLiEl('svarus', lb, val);
+  const secondLiEl = createLiEl('gramus', g, val);
+  const thirdLiEl = createLiEl('uncijas', oz, val);
+
   els.rezEl.append(ulEl);
   ulEl.append(firstLiEl, secondLiEl, thirdLiEl);
+}
+
+function createLiEl(text, short, val) {
+  const firstLiEl = document.createElement('li');
+  firstLiEl.className = 'atsakymas';
+  firstLiEl.textContent = `${val} kg konvertavus i ${text}, gauname ${short} ${text}.`;
+  return firstLiEl;
+}
+
+function errorMsg() {
+  const errLiEl = document.createElement('span');
+  errLiEl.className = 'error';
+  errLiEl.textContent = '!!! Blogai ivesti duomenys (irasykite skaiciu) !!!';
+  els.rezEl.append(errLiEl);
+  setTimeout(() => {
+    errLiEl.remove();
+  }, 2000);
 }
