@@ -25,7 +25,7 @@ const els = {
 els.formEl.addEventListener('submit', (e) => {
   e.preventDefault();
   els.rezEl.innerHTML = '';
-  const inputVal = els.inputEl.value;
+  let inputVal = els.inputEl.value;
   console.log('inputVal ===', inputVal);
   const pounds = convertToPounds(inputVal);
   console.log('pounds ===', pounds);
@@ -34,6 +34,7 @@ els.formEl.addEventListener('submit', (e) => {
   const ounce = convertToOunces(inputVal);
   console.log('ounce ===', ounce);
   pushResultsToWeb(inputVal, pounds, grams, ounce);
+  els.inputEl.value = '';
 });
 
 function convertToPounds(numb) {
