@@ -22,13 +22,14 @@ const els = {
 // console.log(els.inputEl);
 // console.log(els.rezEl);
 
-const regex = /[a-zA-Z]/;
+const regex = /^[0-9]+(\.[0-9]+)?$/;
 
 els.formEl.addEventListener('submit', (e) => {
   e.preventDefault();
   els.rezEl.innerHTML = '';
   let inputVal = els.inputEl.value;
-  if (regex.test(inputVal) || inputVal === '') {
+  console.log(inputVal);
+  if (!regex.test(inputVal) || inputVal === '') {
     errorMsg();
     els.inputEl.value = '';
     return;
@@ -84,5 +85,5 @@ function errorMsg() {
   els.rezEl.append(errLiEl);
   setTimeout(() => {
     errLiEl.remove();
-  }, 2000);
+  }, 4000);
 }

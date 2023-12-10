@@ -59,3 +59,12 @@
   border-radius: 5px;
   background-color: #fff;
 }
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.card {
+  border: 1px solid #000;
+  max-width: 300px;
+}
