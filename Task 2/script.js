@@ -18,6 +18,5 @@ let count = 0;
 
 els.btnEl.addEventListener('click', () => {
   count += 1;
-  console.log('count ===', count);
   els.rezEl.textContent = count;
 });
