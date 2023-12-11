@@ -39,17 +39,17 @@ class Calculator {
   }
 }
 
-const test = new Calculator(55, 22);
-console.log('test ===', test);
+const firstCalc = new Calculator(55, 22);
+console.log('firstCalc ===', firstCalc);
 
-const sudetis = test.sum();
+const sudetis = firstCalc.sum();
 console.log('sudetis ===', sudetis);
 
-const atimtis = test.substraction();
+const atimtis = firstCalc.substraction();
 console.log('atimtis ===', atimtis);
 
-const daugyba = test.multiplication();
+const daugyba = firstCalc.multiplication();
 console.log('daugyba ===', daugyba);
 
-const dalyba = test.division();
+const dalyba = firstCalc.division();
 console.log('dalyba ===', dalyba);
