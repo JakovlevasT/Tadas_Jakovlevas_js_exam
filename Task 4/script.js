@@ -21,17 +21,27 @@ const test = fetch(ENDPOINT)
   .then((rez) => {
     console.log(rez);
     rez.forEach((oneEl) => {
-      console.log(oneEl.brand);
+      console.log(oneEl.models);
+      createCard(oneEl);
     });
   })
   .catch((error) => {
     console.warn('ivyko klaida:', error);
   });
 
-function createEl(el, text) {
-  const newEl = document.createElement(el);
-  newEl.textContent = ``;
-  els.resultsEl.append(newEl);
-}
+function createCard(obj) {
+  const carCard = document.createElement('div');
+  carCard.className = 'card';
+  const cardHead = document.createElement('h2');
+  cardHead.textContent = obj.brand;
 
-createEl('div');
+  const cardListEl = document.createElement('ul');
+  cardListEl.className = 'unlisted';
+  const cardList = document.createElement('li');
+  cardList.textContent = obj.models;
+
+  cardListEl.append(cardList);
+
+  carCard.append(cardHead, cardListEl);
+  els.resultsEl.append(carCard);
+}
