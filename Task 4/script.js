@@ -10,4 +10,28 @@ būti stilizuota su CSS ir būti responsive;
 'use strict';
 console.log('script.js file was loaded');
 
+const els = {
+  resultsEl: document.querySelector('#output'),
+};
+
 const ENDPOINT = 'cars.json';
+
+const test = fetch(ENDPOINT)
+  .then((resp) => resp.json())
+  .then((rez) => {
+    console.log(rez);
+    rez.forEach((oneEl) => {
+      console.log(oneEl.brand);
+    });
+  })
+  .catch((error) => {
+    console.warn('ivyko klaida:', error);
+  });
+
+function createEl(el, text) {
+  const newEl = document.createElement(el);
+  newEl.textContent = ``;
+  els.resultsEl.append(newEl);
+}
+
+createEl('div');
