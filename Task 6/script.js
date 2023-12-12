@@ -22,6 +22,8 @@ const users = [
   { id: '9', name: 'Daniel Cane', age: 51 },
 ];
 
+// 1 uzduotis
+
 function getUserAvarageAge(arr) {
   let sum = 0;
   arr.forEach((userObj) => {
@@ -30,11 +32,14 @@ function getUserAvarageAge(arr) {
     sum += age;
     return sum;
   });
-  // console.log(sum);
   const avgAge = sum / arr.length;
-  // console.log('avgAge ===', avgAge);
+  return avgAge;
 }
-getUserAvarageAge(users);
+
+const avgAgeRezult = getUserAvarageAge(users);
+// console.log('avgAgeRezult ===', avgAgeRezult);
+
+// 2 uzduotis
 
 function getUsersNames(arr) {
   const usersArrList = [];
@@ -45,7 +50,9 @@ function getUsersNames(arr) {
     usersArrList.push(usersName);
     return usersName;
   });
-  console.log('usersArrList ===', usersArrList);
+  // console.log('usersArrList ===', usersArrList);
+  return usersArrList;
 }
 
-getUsersNames(users);
+const usersNames = getUsersNames(users);
+// console.log('usersNames ===', usersNames);

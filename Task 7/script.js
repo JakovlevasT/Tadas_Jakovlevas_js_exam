@@ -17,5 +17,8 @@ const audi = {
 function showObjectKeys(obj) {
   const ats = Object.keys(obj);
   // console.log('ats ===', ats);
+  return ats;
 }
-showObjectKeys(audi);
+
+const objKeys = showObjectKeys(audi);
+// console.log('objKeys ===', objKeys);

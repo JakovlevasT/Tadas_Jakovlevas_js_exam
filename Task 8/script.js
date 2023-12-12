@@ -40,16 +40,16 @@ class Calculator {
 }
 
 const firstCalc = new Calculator(55, 22);
-console.log('firstCalc ===', firstCalc);
+// console.log('firstCalc ===', firstCalc);
 
 const sudetis = firstCalc.sum();
-console.log('sudetis ===', sudetis);
+// console.log('sudetis ===', sudetis);
 
 const atimtis = firstCalc.substraction();
-console.log('atimtis ===', atimtis);
+// console.log('atimtis ===', atimtis);
 
 const daugyba = firstCalc.multiplication();
-console.log('daugyba ===', daugyba);
+// console.log('daugyba ===', daugyba);
 
 const dalyba = firstCalc.division();
-console.log('dalyba ===', dalyba);
+// console.log('dalyba ===', dalyba);

@@ -28,19 +28,19 @@ els.formEl.addEventListener('submit', (e) => {
   e.preventDefault();
   els.rezEl.innerHTML = '';
   let inputVal = els.inputEl.value;
-  console.log(inputVal);
+  // console.log(inputVal);
   if (!regex.test(inputVal) || inputVal === '') {
     errorMsg();
     els.inputEl.value = '';
     return;
   }
-  console.log('inputVal ===', inputVal);
+  // console.log('inputVal ===', inputVal);
   const pounds = convertToPounds(inputVal);
-  console.log('pounds ===', pounds);
+  // console.log('pounds ===', pounds);
   const grams = convertToGrams(inputVal);
-  console.log('grams ===', grams);
+  // console.log('grams ===', grams);
   const ounce = convertToOunces(inputVal);
-  console.log('ounce ===', ounce);
+  // console.log('ounce ===', ounce);
   pushResultsToWeb(inputVal, pounds, grams, ounce);
   els.inputEl.value = '';
 });

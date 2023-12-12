@@ -71,19 +71,23 @@ form {
 }
 .ulEl {
   background-color: white;
-  max-width: 30%;
+  max-width: 80%;
   border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
   list-style: none;
   text-align: center;
+  font-size: 20px;
 }
 /* Tablet */
 @media screen and (min-width: 768px) {
   .headline {
     font-size: 3.5em;
   }
-
+  .ulEl {
+    max-width: 60%;
+    font-size: 25px;
+  }
   #search,
   #submit-btn {
     font-size: 2em;

@@ -19,7 +19,7 @@ const els = {
   msgEl: document.querySelector('#message'),
 };
 
-console.log(els.btnEl);
+// console.log(els.btnEl);
 
 const ENDPOINT = 'https://api.github.com/users';
 
@@ -30,10 +30,10 @@ els.btnEl.addEventListener('click', (e) => {
     fetch(ENDPOINT)
       .then((resp) => resp.json())
       .then((ats) => {
-        console.log(ats);
+        // console.log(ats);
         ats.forEach((user) => {
-          console.log(user.login);
-          console.log(user.avatar_url);
+          // console.log(user.login);
+          // console.log(user.avatar_url);
           showUsers(user.login, user.avatar_url);
         });
       })
