@@ -19,11 +19,12 @@ const ENDPOINT = 'cars.json';
 const test = fetch(ENDPOINT)
   .then((resp) => resp.json())
   .then((rez) => {
-    console.log(rez);
+    // console.log(rez);
     rez.forEach((oneEl) => {
-      console.log(oneEl.models);
+      // console.log(oneEl.models);
       createCard(oneEl);
     });
+    // console.log(rez);
   })
   .catch((error) => {
     console.warn('ivyko klaida:', error);
@@ -32,16 +33,28 @@ const test = fetch(ENDPOINT)
 function createCard(obj) {
   const carCard = document.createElement('div');
   carCard.className = 'card';
+
   const cardHead = document.createElement('h2');
+  cardHead.className = 'title';
   cardHead.textContent = obj.brand;
 
   const cardListEl = document.createElement('ul');
   cardListEl.className = 'unlisted';
-  const cardList = document.createElement('li');
-  cardList.textContent = obj.models;
 
-  cardListEl.append(cardList);
+  const cardList = obj.models.map((el) => {
+    const liEl = createLiEl(el);
+    console.log(el);
+    return liEl;
+  });
+
+  cardListEl.append(...cardList);
 
   carCard.append(cardHead, cardListEl);
   els.resultsEl.append(carCard);
+}
+
+function createLiEl(text) {
+  const liEl = document.createElement('li');
+  liEl.textContent = text;
+  return liEl;
 }
