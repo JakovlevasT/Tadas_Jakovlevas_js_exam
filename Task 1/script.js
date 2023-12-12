@@ -69,6 +69,7 @@ function pushResultsToWeb(val, lb, g, oz) {
 
   els.rezEl.append(ulEl);
   ulEl.append(firstLiEl, secondLiEl, thirdLiEl);
+  return ulEl;
 }
 
 function createLiEl(text, short, val) {
