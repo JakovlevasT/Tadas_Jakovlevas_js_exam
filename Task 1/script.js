@@ -8,3 +8,83 @@ pamatyti jo pateikto svorio kovertavimą į:
 Pastaba: rezultatas turi būti matomas pateikus formą ir atvaizduojamas
 div elemente su id "output" viduje. Gautus atsakymus stilizuokite naudojant CSS;
 ------------------------------------------------------------------- */
+
+'use strict';
+console.log('script.js file was loaded');
+
+const els = {
+  formEl: document.forms[0],
+  inputEl: document.querySelector('#search'),
+  rezEl: document.querySelector('#output'),
+};
+
+// console.log(els.formEl);
+// console.log(els.inputEl);
+// console.log(els.rezEl);
+
+const regex = /^[0-9]+(\.[0-9]+)?$/;
+
+els.formEl.addEventListener('submit', (e) => {
+  e.preventDefault();
+  els.rezEl.innerHTML = '';
+  let inputVal = els.inputEl.value;
+  // console.log(inputVal);
+  if (!regex.test(inputVal) || inputVal === '') {
+    errorMsg();
+    els.inputEl.value = '';
+    return;
+  }
+  // console.log('inputVal ===', inputVal);
+  const pounds = convertToPounds(inputVal);
+  // console.log('pounds ===', pounds);
+  const grams = convertToGrams(inputVal);
+  // console.log('grams ===', grams);
+  const ounce = convertToOunces(inputVal);
+  // console.log('ounce ===', ounce);
+  pushResultsToWeb(inputVal, pounds, grams, ounce);
+  els.inputEl.value = '';
+});
+
+function convertToPounds(numb) {
+  const sum = numb * 2.2046;
+  return sum.toFixed(2);
+}
+function convertToGrams(numb) {
+  const sum = numb / 0.001;
+  return sum.toFixed(2);
+}
+
+function convertToOunces(numb) {
+  const sum = numb * 35.274;
+  return sum.toFixed(2);
+}
+
+function pushResultsToWeb(val, lb, g, oz) {
+  const ulEl = document.createElement('ul');
+  ulEl.className = 'ulEl';
+
+  const firstLiEl = createLiEl('svarus', lb, val);
+  const secondLiEl = createLiEl('gramus', g, val);
+  const thirdLiEl = createLiEl('uncijas', oz, val);
+
+  els.rezEl.append(ulEl);
+  ulEl.append(firstLiEl, secondLiEl, thirdLiEl);
+  return ulEl;
+}
+
+function createLiEl(text, short, val) {
+  const firstLiEl = document.createElement('li');
+  firstLiEl.className = 'atsakymas';
+  firstLiEl.textContent = `${val} kg konvertavus i ${text}, gauname ${short} ${text}.`;
+  return firstLiEl;
+}
+
+function errorMsg() {
+  const errLiEl = document.createElement('span');
+  errLiEl.className = 'error';
+  errLiEl.textContent = '!!! Blogai ivesti duomenys (irasykite skaiciu) !!!';
+  els.rezEl.append(errLiEl);
+  setTimeout(() => {
+    errLiEl.remove();
+  }, 4000);
+}
